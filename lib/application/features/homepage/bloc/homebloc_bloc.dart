@@ -144,6 +144,7 @@ class HomeblocBloc extends Bloc<HomeblocEvent, HomeblocState> {
     await getExpenseAmount(emit);
   }
 
+//Function to get the expense list & balance amount
   Future<void> _updateExpensesListAndBalance(
       Emitter<HomeblocState> emit) async {
     var expensesList = await sqfliteHelper.getData("expense");
@@ -162,6 +163,7 @@ class HomeblocBloc extends Bloc<HomeblocEvent, HomeblocState> {
     ));
   }
 
+//Function to get the income amount total
   Future<void> getIncomeAmount(Emitter<HomeblocState> emit) async {
     var expensesList = await sqfliteHelper.getData("expense");
     List<ExpenseAddModel> expensesModelList =
@@ -172,6 +174,7 @@ class HomeblocBloc extends Bloc<HomeblocEvent, HomeblocState> {
     emit(state.copyWith(totalIncome: totalIncome));
   }
 
+//Function to get the expense total
   Future<void> getExpenseAmount(Emitter<HomeblocState> emit) async {
     var expensesList = await sqfliteHelper.getData("expense");
     List<ExpenseAddModel> expensesModelList =
