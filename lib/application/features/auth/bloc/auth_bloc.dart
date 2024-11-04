@@ -62,12 +62,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final userBox = Hive.box('userBooxxx');
         await userBox.put('currentUser', existingUser.toJson());
         print(await userBox.get("currentUser"));
+        // ignore: invalid_use_of_visible_for_testing_member
         emit(const AuthState.authenticated());
         return true;
       }
     }
 
     print("Login failed");
+    // ignore: invalid_use_of_visible_for_testing_member
     emit(const AuthState.error("Invalid username or password"));
     return false;
   }

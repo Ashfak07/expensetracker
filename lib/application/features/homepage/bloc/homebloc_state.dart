@@ -3,6 +3,7 @@ import 'package:expensetracker/domain/model/expense_add_model.dart';
 import 'package:flutter/material.dart';
 
 @immutable
+// ignore: must_be_immutable
 class HomeblocState extends Equatable {
   ExpenseAddModel? expensesModel;
   List<ExpenseAddModel?>? expensesList;
@@ -58,6 +59,7 @@ class HomeblocState extends Equatable {
   }
 }
 
+// ignore: must_be_immutable
 class HomeblocInitial extends HomeblocState {
   HomeblocInitial()
       : super(

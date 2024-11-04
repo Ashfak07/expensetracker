@@ -1,8 +1,4 @@
-import 'package:expensetracker/application/features/homepage/bloc/homebloc_bloc.dart';
-import 'package:expensetracker/application/features/homepage/home_page.dart';
-import 'package:expensetracker/application/features/homepage/widgets/commoncard_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class CardWidget extends StatelessWidget {

@@ -4,7 +4,6 @@ import 'package:expensetracker/application/features/profile/profile_screen.dart'
 import 'package:expensetracker/application/features/report/report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nb_utils/nb_utils.dart';
 
 List<Widget> screens = [HomeScreen(), ReportScreen(), ProfileScreen()];
 

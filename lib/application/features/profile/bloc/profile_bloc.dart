@@ -10,6 +10,7 @@ part 'profile_bloc.freezed.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc() : super(_Initial()) {
     on<ProfileEvent>((event, emit) {});
+
     on<LoadUserDataEvent>(_loadUserData);
   }
   Future<void> _loadUserData(

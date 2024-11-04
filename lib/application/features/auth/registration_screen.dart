@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'; // Import this for BlocProvider
 import 'package:nb_utils/nb_utils.dart';
 
+// ignore: must_be_immutable
 class RegistrationScreen extends StatelessWidget {
   RegistrationScreen({super.key});
 

@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-import '../home_page.dart';
-
 class BottomSheetContainer extends StatelessWidget {
   const BottomSheetContainer({
     super.key,
