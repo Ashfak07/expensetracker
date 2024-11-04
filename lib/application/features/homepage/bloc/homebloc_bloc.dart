@@ -73,7 +73,6 @@ class HomeblocBloc extends Bloc<HomeblocEvent, HomeblocState> {
 
   Future<void> _saveExpense(
       SaveExpenseEvent event, Emitter<HomeblocState> emit) async {
-    // Define the schema for the expense table
     Map<String, String> expenseTableSchema = {
       'id': 'INTEGER PRIMARY KEY AUTOINCREMENT',
       'amount': 'TEXT',
@@ -81,14 +80,8 @@ class HomeblocBloc extends Bloc<HomeblocEvent, HomeblocState> {
       'dateTime': 'TEXT',
       'type': 'TEXT',
     };
-    // Create the table if it doesn't exist
     await sqfliteHelper.createTable("expense", expenseTableSchema);
-
-    // Now insert the expense data
     await sqfliteHelper.insertExpense("expense", state.expensesModel!.toJson());
-    print("Expense data saved to SQLite successfully.");
-
-    // Update expenses list and balance
     await _updateExpensesListAndBalance(emit);
     await getIncomeAmount(emit);
     await getExpenseAmount(emit);
@@ -102,15 +95,12 @@ class HomeblocBloc extends Bloc<HomeblocEvent, HomeblocState> {
           filteredExpensesList: currentExpenses,
           hasData: currentExpenses.isNotEmpty));
     } else {
-      // Filter expenses that match the query in either category or type
       final filteredExpenses = currentExpenses.where((expense) {
         return expense!.category!
                 .toLowerCase()
                 .contains(event.query.toLowerCase()) ||
             expense.type!.toLowerCase().contains(event.query.toLowerCase());
       }).toList();
-
-      // Emit the state with the filtered list
       emit(state.copyWith(
           filteredExpensesList: filteredExpenses,
           hasData: filteredExpenses.isNotEmpty));

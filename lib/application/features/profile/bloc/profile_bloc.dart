@@ -21,14 +21,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         UserModel model = UserModel();
         model = model.copyWith(
             mobile: currentUser["mobile"], username: currentUser["username"]);
-        emit(ProfileState.getUserCred(model)); // Emit user data state
+        emit(ProfileState.getUserCred(model));
       } else {
-        emit(ProfileState.error(
-            "User not found")); // Emit error state if no user is found
+        emit(ProfileState.error("User not found"));
       }
     } catch (error) {
-      emit(ProfileState.error(
-          "Failed to load user data: $error")); // Emit error on failure
+      emit(ProfileState.error("Failed to load user data: $error"));
     }
   }
 }

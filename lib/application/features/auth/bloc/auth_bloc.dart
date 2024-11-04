@@ -22,7 +22,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           final userBox = await Hive.openBox('userBooxxx');
           final currentUser = userBox.get('currentUser');
           if (currentUser != null) {
-            // User is logged in, emit authenticated state
             emit(const AuthState.authenticated());
           }
         },
@@ -48,8 +47,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       "date": "TEXT"
     };
     await sqfliteHelper.createTable("user", userTableSchema);
-
-    // Now insert the user data
     await sqfliteHelper.insertExpense("user", user.toJson());
   }
 
@@ -62,11 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (existingUser.username == user.username &&
           existingUser.password == user.password) {
         print("Login success");
-
-        // Save the user data to Hive
         final userBox = Hive.box('userBooxxx');
-        await userBox.put(
-            'currentUser', existingUser.toJson()); // Save the user object
+        await userBox.put('currentUser', existingUser.toJson());
         print(await userBox.get("currentUser"));
         emit(const AuthState.authenticated());
         return true;
@@ -74,8 +68,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
     print("Login failed");
-    emit(const AuthState.error(
-        "Invalid username or password")); // Emit error state if login fails
+    emit(const AuthState.error("Invalid username or password"));
     return false;
   }
 
